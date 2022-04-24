@@ -1,0 +1,335 @@
+Microsoft Windows [Version 10.0.19044.1586]
+(c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+C:\Windows\system32>cd ..
+
+C:\Windows>cd ..
+
+C:\>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> CREATE DATABASE example;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE example;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.01 sec)
+
+mysql> DROP TABLE IF EXISTS users;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> CREATE TABLE users (
+    -> id SERIAL PRIMARY KEY,
+    -> name VARCHAR(255));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO users VALUES
+    -> (DEFAULT, 'Andrew'),
+    -> (DEFAULT, 'Jack'),
+    -> (DEFAULT, 'John');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM users;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Andrew |
+|  2 | Jack   |
+|  3 | John   |
++----+--------+
+3 rows in set (0.00 sec)
+
+mysql> DESCRIBE users;
++-------+-----------------+------+-----+---------+----------------+
+| Field | Type            | Null | Key | Default | Extra          |
++-------+-----------------+------+-----+---------+----------------+
+| id    | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255)    | YES  |     | NULL    |                |
++-------+-----------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> exit
+Bye
+
+C:\>mysqldump -u root -p example > sample.sql
+Enter password: **********
+
+C:\>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| example            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE sample;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE sample;
+Database changed
+mysql> source sample.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> DISCRIBE users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DISCRIBE users' at line 1
+mysql> DESCRIBE users;
++-------+-----------------+------+-----+---------+----------------+
+| Field | Type            | Null | Key | Default | Extra          |
++-------+-----------------+------+-----+---------+----------------+
+| id    | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255)    | YES  |     | NULL    |                |
++-------+-----------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM users;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Andrew |
+|  2 | Jack   |
+|  3 | John   |
++----+--------+
+3 rows in set (0.00 sec)
+
+mysql> USE mysql;
+Database changed
+mysql> SHOW TABLES;
++------------------------------------------------------+
+| Tables_in_mysql                                      |
++------------------------------------------------------+
+| columns_priv                                         |
+| component                                            |
+| db                                                   |
+| default_roles                                        |
+| engine_cost                                          |
+| func                                                 |
+| general_log                                          |
+| global_grants                                        |
+| gtid_executed                                        |
+| help_category                                        |
+| help_keyword                                         |
+| help_relation                                        |
+| help_topic                                           |
+| innodb_index_stats                                   |
+| innodb_table_stats                                   |
+| password_history                                     |
+| plugin                                               |
+| procs_priv                                           |
+| proxies_priv                                         |
+| replication_asynchronous_connection_failover         |
+| replication_asynchronous_connection_failover_managed |
+| replication_group_configuration_version              |
+| replication_group_member_actions                     |
+| role_edges                                           |
+| server_cost                                          |
+| servers                                              |
+| slave_master_info                                    |
+| slave_relay_log_info                                 |
+| slave_worker_info                                    |
+| slow_log                                             |
+| tables_priv                                          |
+| time_zone                                            |
+| time_zone_leap_second                                |
+| time_zone_name                                       |
+| time_zone_transition                                 |
+| time_zone_transition_type                            |
+| user                                                 |
++------------------------------------------------------+
+37 rows in set (0.00 sec)
+
+mysql> DESCRIBE help_keyword;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| help_keyword_id | int unsigned | NO   | PRI | NULL    |       |
+| name            | char(64)     | NO   | UNI | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> \q
+Bye
+
+C:\>mysqldump -u root -p --opt --where="1 limit 100" mysql help_keyword > dump.sql
+Enter password: **********
+
+C:\>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE ex_dum;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE ex_dum;
+Database changed
+mysql> SOURCE dump.sql
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+ERROR 3723 (HY000): The table 'help_keyword' may not be created in the reserved tablespace 'mysql'.
+Query OK, 0 rows affected (0.00 sec)
+
+ERROR 1146 (42S02): Table 'ex_dum.help_keyword' doesn't exist
+ERROR 1146 (42S02): Table 'ex_dum.help_keyword' doesn't exist
+ERROR 1146 (42S02): Table 'ex_dum.help_keyword' doesn't exist
+ERROR 1146 (42S02): Table 'ex_dum.help_keyword' doesn't exist
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
